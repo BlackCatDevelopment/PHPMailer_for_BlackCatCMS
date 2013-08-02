@@ -23,10 +23,27 @@
  *
  */
 
+if (defined('CAT_PATH')) {
+	include(CAT_PATH.'/framework/class.secure.php');
+} else {
+	$oneback = "../";
+	$root = $oneback;
+	$level = 1;
+	while (($level < 10) && (!file_exists($root.'/framework/class.secure.php'))) {
+		$root .= $oneback;
+		$level += 1;
+	}
+	if (file_exists($root.'/framework/class.secure.php')) {
+		include($root.'/framework/class.secure.php');
+	} else {
+		trigger_error(sprintf("[ <b>%s</b> ] Can't include class.secure.php!", $_SERVER['SCRIPT_NAME']), E_USER_ERROR);
+	}
+}
+
 $module_directory    = 'lib_phpmailer';
 $module_name         = 'PHPMailer Library';
 $module_function     = 'library';
-$module_version      = '5.2.6';
+$module_version      = '5.2.7';
 $module_platform     = '1.x';
 $module_requirements = 'PHP 5.2 or higher';
 $module_author 		 = 'Andy Prevost, Marcus Bointon, Brent R. Matzelle (see class.pop3.php for more details); Black Cat Development (Module)';
@@ -34,5 +51,6 @@ $module_home		 = 'https://code.google.com/a/apache-extras.org/p/phpmailer/';
 $module_license 	 = 'GNU General Public License (module); LGPLv2 (PHPMailer)';
 $module_description  = 'PHPMailer Library for use with Black Cat CMS (v5.2.6)';
 $module_guid         = '4F10A434-35A5-45C3-9B2C-F718F423E0FD';
+$library_function    = 'mail';
 
 ?>
