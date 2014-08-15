@@ -15,10 +15,10 @@
  *   along with this program; if not, see <http://www.gnu.org/licenses/>.
  *
  *   @author          Black Cat Development
- *   @copyright       2013, Black Cat Development
+ *   @copyright       2014, Black Cat Development
  *   @link            http://blackcat-cms.org
  *   @license         http://www.gnu.org/licenses/gpl.html
- *   @category        CAT_Module
+ *   @category        CAT_Modules
  *   @package         lib_phpmailer
  *
  */
@@ -26,11 +26,10 @@
 if (defined('CAT_PATH')) {
 	include(CAT_PATH.'/framework/class.secure.php');
 } else {
-	$oneback = "../";
-	$root = $oneback;
+	$root = "../";
 	$level = 1;
 	while (($level < 10) && (!file_exists($root.'/framework/class.secure.php'))) {
-		$root .= $oneback;
+		$root .= "../";
 		$level += 1;
 	}
 	if (file_exists($root.'/framework/class.secure.php')) {
@@ -38,4 +37,13 @@ if (defined('CAT_PATH')) {
 	} else {
 		trigger_error(sprintf("[ <b>%s</b> ] Can't include class.secure.php!", $_SERVER['SCRIPT_NAME']), E_USER_ERROR);
 	}
+}
+
+// check if another mail lib is active; if not, activate this one
+if(!CAT_Registry::defined('CATMAILER_LIB') || CATMAILER_LIB == '')
+{
+    $database->query(sprintf(
+        "UPDATE `%ssettings` SET `value`='%s' WHERE `name`='%s'",
+        CAT_TABLE_PREFIX, 'lib_phpmailer', 'catmailer_lib'
+    ));
 }
