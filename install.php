@@ -43,7 +43,7 @@ if (defined('CAT_PATH')) {
 if(!CAT_Registry::defined('CATMAILER_LIB') || CATMAILER_LIB == '')
 {
     $database->query(sprintf(
-        "UPDATE `%ssettings` SET `value`='%s' WHERE `name`='%s'",
-        CAT_TABLE_PREFIX, 'lib_phpmailer', 'catmailer_lib'
+        "INSERT INTO `%ssettings` VALUES (NULL,'%s','%s')",
+        CAT_TABLE_PREFIX, 'catmailer_lib', 'lib_phpmailer'
     ));
 }
