@@ -43,13 +43,13 @@ if (defined('CAT_PATH')) {
 $module_directory    = 'lib_phpmailer';
 $module_name         = 'PHPMailer Library';
 $module_function     = 'library';
-$module_version      = '5.2.8';
+$module_version      = '5.2.10';
 $module_platform     = '1.x';
 $module_requirements = 'PHP 5.2 or higher';
 $module_author 		 = 'Andy Prevost, Marcus Bointon, Brent R. Matzelle (see class.pop3.php for more details); Black Cat Development (Module)';
 $module_home		 = 'https://github.com/PHPMailer/PHPMailer';
 $module_license 	 = 'GNU General Public License (module); LGPLv2 (PHPMailer)';
-$module_description  = 'PHPMailer Library (v5.2.8) for use with Black Cat CMS';
+$module_description  = 'PHPMailer Library (v5.2.10) for use with Black Cat CMS';
 $module_guid         = '4F10A434-35A5-45C3-9B2C-F718F423E0FD';
 $library_function    = 'mail';
 
